@@ -1,0 +1,145 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Teacher Dashboard</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>      
+        <div class="d-flex">        
+          <button class="btn btn-success" type="submit"  data-bs-toggle="modal" data-bs-target="#exampleModal">Add Teacher</button>
+        </div>
+      </div>
+  </nav>
+  <table class="table table-striped">
+  <thead>
+    <tr>
+        <th>Id</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th>Class</th>
+        <th>Email Id</th>
+        
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr >
+      <tr>
+      
+        <th>Id</th>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Email Id</th>
+        <th>Action</th>
+        <td>
+       
+             <input type="button" value="Edit"    data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success me-2"/>
+            <input type="button" value="Delete"    class="btn btn-danger"/>  
+        </td>
+    </tr> -->
+  </tbody>
+  <tbody>
+    <tr >
+      <tr>
+      <tr *ngFor="let teacher of allteacher.data"> 
+         <td>{{teacher.id}}</td>
+        <td>{{teacher.firstName}}</td>
+        <td>{{teacher.lastName}}</td>
+        <td>{{teacher.age}}</td>
+        <td>{{teacher.class}}</td>
+        <td>{{teacher.email}}</td>
+       
+             <input type="button" value="Edit"  (click)="EditTeacher(teacher)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success me-2"/>
+            <input type="button" value="Delete"  data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-success me-2" class="btn btn-danger"/>  
+        
+            <div class="modal" tabindex="-1" id="exampleModal2">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Teacher Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete the details ?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary" (click)="DeleteTeacher(teacher)"  data-bs-dismiss="modal">Yes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+    </tr>
+  </tbody>
+  </table>
+  
+  
+  
+  <!-- Button trigger modal -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Teacher Register</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form class="row g-3" [formGroup]="formValue">
+                <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">ID</label>
+                    <input type="number" formControlName="id" class="form-control" id="inputEmail4" placeholder="Enter ID">
+                  </div>
+                <div class="col-md-6">
+                    <label for="inputfirstName" class="form-label">First Name</label>
+                     <!-- <input  required minlength="2" maxlength="7" type="text" name="firstname" class="form-control" ngModel>  -->
+                    <input type="text" formControlName="firstName" class="form-control" id="inputfirstName" placeholder="Enter First name"> 
+                     <!-- <div *ngIf = "firstname.touched && name.invalid" class="alert alert-danger">
+                        <p *ngIf="firstname.errors.required">FirstName Required!!</p>
+                        <p *ngIf="firstname.errors.minlength"> Invalid ! Short FirstName</p>
+                    </div> -->
+                  </div>
+                  <div class="col-12">
+                    <label for="inputlastName" class="form-label">Last Name</label>
+                    <input type="text" formControlName="lastName" class="form-control" id="inputlastName" placeholder="Enter last name">
+                    <!-- <input  #lastname = "ngModel" required minlength="2" maxlength="7" type="text" name="lastname" class="form-control" ngModel>
+                    <p *ngIf="lastname.errors.required">lastName Required!!</p> -->
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputAge" class="form-label">Age</label>
+                    <input type="text" formControlName="age" class="form-control" id="inputAge" placeholder="Enter age ">
+                    <!-- <input #age = "ngModel" required min="18" maxlength="60" type="number" name="age" class="form-control" ngModel>
+                    <p *ngIf="age.errors.required">Age Required!!</p> -->
+                  </div>
+                  
+                <div class="col-md-6">
+                  <label for="inputEmail4" class="form-label">Email</label>
+                  <input type="email" formControlName="email" class="form-control" id="inputEmail4" placeholder="Enter email">
+                  <!-- <p *ngIf="email.errors.required">Email Required!!</p> -->
+                </div>
+                <div class="col-md-6">
+                    <label for="inputClass" class="form-label">Class</label>
+                    <input type="text" formControlName="class" class="form-control" id="inputClass" placeholder="Enter class">
+                    <!-- <p *ngIf="class.errors.required">Class Required!!</p> -->
+                  </div>
+               
+               
+                <!-- <div class="col-12">
+                  <label for="inputCity" class="form-label">Students</label>
+                  <input type="text" class="form-control" id="inputAddress2" formControlName="city" placeholder="Enter your city name">
+                </div> -->
+              </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning"  data-bs-dismiss="modal">Close</button>
+          <button  type="button" class="btn btn-primary" (click)="AddTeacher()" >Register</button>
+          <button  type="button" class="btn btn-primary" (click)="UpdateTeacher()"  >Update</button>
+          <!-- <a routerLink="['edit',user.id]">Edit</a>
+          <a routerLink="['delete',user.id]">Delete</a> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
