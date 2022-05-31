@@ -36,6 +36,8 @@ export class TeacherDataComponent implements OnInit {
     this.AllTeacher();
   }
 
+  // Post Method For Add Student
+
 AddTeacher(){
   this.teacherobj.id = this.formValue.value.id;
   this.teacherobj.firstName = this.formValue.value.firstName;
@@ -58,6 +60,9 @@ AddTeacher(){
 
 }
 
+      // Get Method For All Teachers
+  
+  
 AllTeacher(){
   this.api.getTeacher().subscribe(res => {
     this.allteacher = res;
@@ -72,12 +77,12 @@ EditTeacher(data:any){
   this.formValue.controls['lastName'].setValue(data.lastName);
   this.formValue.controls['age'].setValue(data.age);
   this.formValue.controls['email'].setValue(data.email);
-  this.formValue.controls['class'].setValue(data.class);
- 
+  this.formValue.controls['class'].setValue(data.class); 
   this.teacherobj.id = data.id;
   this.UpdateShowBtn();
 }
 
+// Put Method For Update Teachers
 UpdateTeacher(){
   this.teacherobj.id = this.formValue.value.id;
   this.teacherobj.firstName = this.formValue.value.firstName;
@@ -94,7 +99,7 @@ UpdateTeacher(){
 
 }
 
-
+// Delete Method For Update Teachers
 DeleteTeacher(data:any){
   this.api.deleteTeacher(data.id).subscribe(res => {
     alert("Record Deleted Successfully");
