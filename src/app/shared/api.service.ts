@@ -11,7 +11,7 @@ export class ApiService {
 
 
 
-  // Post Method For Add Student
+  // Post Method For Add Teacchers
   postTeacher(data:any)
   {
     return this._http.post<any>("https://97mm2.sse.codesandbox.io/teachers",data).pipe(map((res:any)=> {
